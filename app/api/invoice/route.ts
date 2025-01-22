@@ -3,8 +3,7 @@ import { NextResponse } from "next/server";
 import connectMongo from "@/lib/Database";
 import Invoice from "@/models/invoices";
 
-import fs from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
@@ -24,21 +23,14 @@ export async function POST(req: Request) {
       );
     }
 
-    const UPLOAD_DIR = `public/uploads`;
-
     const buffer = Buffer.from(await file.arrayBuffer());
-
-    if (!fs.existsSync(UPLOAD_DIR)) {
-      fs.mkdirSync(UPLOAD_DIR);
-    }
-
-    fs.writeFileSync(path.resolve(UPLOAD_DIR, (file as File).name), buffer);
-
     const arrayBuffer = await file.arrayBuffer();
-
-    const previewUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/uploads/${file.name}`;
-
     const fileName = file.name;
+    
+    const blob = await put(fileName, buffer, {
+      access: "public",
+    });
+    const previewUrl = blob.url;
 
     const result = await model.generateContent([
       {
