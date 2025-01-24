@@ -7,6 +7,7 @@ const InvoiceSchema = new Schema<invoicesHandlerType>(
     file_url: { type: String, required: true },
     invoice_data: { type: Schema.Types.Mixed, required: true },
     marker: { type: String, required: true },
+    tenant_id: { type: String, required: true },
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
