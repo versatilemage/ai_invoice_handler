@@ -11,7 +11,6 @@ export async function GET(
 
   try {
     await connectMongo(); // Connect to MongoDB
-    console.log("id", id);
     // Fetch the specific invoice by ID
     const invoice = await Invoice.findOne({ _id: new Types.ObjectId(id) });
 
