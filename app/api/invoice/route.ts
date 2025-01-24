@@ -1,6 +1,9 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import { NextResponse } from "next/server";
+
 import connectMongo from "@/lib/Database";
+
 import Invoice from "@/models/invoices";
 
 import { put } from "@vercel/blob";
@@ -15,6 +18,7 @@ export async function POST(req: Request) {
 
     const formData = await req.formData();
     const file = formData.get("invoice");
+    const tenantId = formData.get("tenantId");
 
     if (!file || !(file instanceof Blob)) {
       return NextResponse.json(
@@ -39,7 +43,7 @@ export async function POST(req: Request) {
           mimeType: "application/pdf",
         },
       },
-      "Extract the given invoice and give me the data of the invoice in data type of JSON",
+      "Extract the given invoice and give me the exact data of the invoice in data type of JSON",
     ]);
 
     const rawSummary = result.response.text();
@@ -61,6 +65,7 @@ export async function POST(req: Request) {
       file_url: previewUrl,
       invoice_data: parsedSummary,
       marker: process.env.NEXT_PUBLIC_MARKER,
+      tenant_id: tenantId,
     });
 
     await newInvoice.save();

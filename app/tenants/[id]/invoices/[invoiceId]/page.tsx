@@ -1,19 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import DynamicRenderer from "@/components/ui/dynamic-ui";
+import DynamicRenderer from "@/components/molecules/dynamic-ui";
 
 import { useParams } from "next/navigation";
 
-export default function Home() {
+export default function IndividualInvoiceData() {
   const [summary, setSummary] = useState(null);
   const [fileUrl, setFileUrl] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const { id } = useParams();
+  const { invoiceId } = useParams();
 
   const handleCollectIndividualInvoiceData = async () => {
     try {
-      const response = await fetch(`/api/invoice/${id}`);
+      const response = await fetch(`/api/invoice/${invoiceId}`);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     handleCollectIndividualInvoiceData();
-  }, [id]);
+  }, [invoiceId]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-screen">

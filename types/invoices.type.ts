@@ -6,4 +6,5 @@ export interface invoicesHandlerType extends ReusableTime, Document {
     file_url: string;
     invoice_data: Record<string, any>;
     marker: string;
+    tenant_id: string;
 }

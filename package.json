@@ -10,18 +10,27 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-toast": "^1.2.5",
     "@tabler/icons-react": "^3.28.1",
     "@types/mongoose": "^5.11.96",
     "@vercel/blob": "^0.27.1",
+    "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0",
+    "lucide-react": "^0.473.0",
     "mongoose": "^8.9.5",
     "next": "14.2.23",
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.3.5",
-    "tailwind-merge": "^2.6.0"
+    "react-hook-form": "^7.54.2",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^20",
