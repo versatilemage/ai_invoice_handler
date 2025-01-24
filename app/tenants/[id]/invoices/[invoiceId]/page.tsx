@@ -37,11 +37,11 @@ export default function IndividualInvoiceData() {
   }, [invoiceId]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen">
+    <div className="flex sm:flex-row flex-col items-start justify-center w-full min-h-screen px-20 py-10">
       {error && <p style={{ color: "red" }}>{error}</p>}
       {fileUrl && (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <iframe src={fileUrl} width="800" height="600"></iframe>
+        <div className="flex flex-col items-center justify-center w-full h-full rounded-lg overflow-hidden">
+          <iframe src={fileUrl} width="600" height="850"></iframe>
         </div>
       )}
       {!summary ? (
@@ -49,7 +49,7 @@ export default function IndividualInvoiceData() {
           <p>Invalid ID provided</p>
         </div>
       ) : (
-        <div className="w-full p-6 flex flex-col items-center gap-5 mt-10 max-w-[900px] bg-gray-300">
+        <div className="w-full p-6 flex flex-col items-center gap-5 max-w-[900px] bg-gray-300">
           <DynamicRenderer data={summary} />
         </div>
       )}

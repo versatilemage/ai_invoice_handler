@@ -22,5 +22,5 @@ export async function createCustomer(
 
 export async function getCustomers(tenantId: string) {
   await connectMongo();
-  return Customer.find({ tenantId });
+  return Customer.find({ tenant_id: tenantId });
 }
